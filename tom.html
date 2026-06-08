@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+   <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+           
+<title>alle store</title>
+
+
+
+
+</head>
+<body>
+
+
+   <style>
+ *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
+  body{background:#fff;color:#111;padding-bottom:80px}
+  img{display:block;max-width:100%}
+  button{cursor:pointer;font-family:inherit}
+  a{text-decoration:none;color:inherit}
+
+
+  /* HERO */
+  .hero{position:relative}
+  .hero>img{width:100%;height:65vh;object-fit:cover ;aspect-ratio:4/5;}
+  .nav{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;
+       align-items:center;padding:1px 10px;background:rgba(0,0,0,.4);color:#fff}
+  .nav button,.nav a{background:none;border:none;color:#fff;font-size:35px}
+  .brand{font-size:28px;font-weight:90;letter-spacing:-1px;text-transform:lowercase}
+  .brand sup{font-size:1px}
+   .brand>img{width :25% ; display:inline-flex;margin-top:20px ;margin-bottom:12px; }
+  .caption{position:absolute;bottom:24px;left:20px;background:rgba(0,0,0,.4);
+           color:#fff;padding:8px 16px;font-size:17px;font-weight:800;letter-spacing:5px}
+
+  /* SLIDER DOTS */
+  .slider{display:flex;gap:0px;padding:16px 20px}
+  .slider span{flex:1;height:2px;background:#111}
+  .slider span.dim{background:#ccc}
+
+ 
+ 
+
+  /* SECTION TITLE */
+  .sec-title{padding:0 20px;display:flex;justify-content:space-between;
+             align-items:flex-end;margin-bottom:12px}
+  .sec-title h2{font-size:22px;font-weight:900}
+  .sec-title a{font-size:11px;letter-spacing:2px;color:#777}
+
+  /* GRID */
+  .grid{ display:grid;grid-template-columns:1fr 1fr 1fr ;gap:5px;padding:0 90pxpx}
+  .card{border:1px solid #ddd;cursor:pointer;background:#fff;}
+  .card .img-wrap{position:relative}
+  .card img{width:100%;aspect-ratio:1/1;object-fit:cover}
+  .tag{position:absolute;top:8px;left:8px;background:#111;color:#fff;
+       font-size:10px;font-weight:bold;padding:2px 8px;letter-spacing:2px}
+  .heart{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.8);
+         border:none;padding:6px;border-radius:50%;font-size:12px}
+  .card-info{padding:10px}
+  .card-info h3{font-size:11px;font-weight:bold;letter-spacing:2px;margin-top:4px}
+  .card-info p{font-size:14px;font-weight:bold;margin-top:4px}
+  .stars{font-size:10px;color:#777}
+
+  /* BANNER */
+  .banner{margin:40px 20px 0;background:#111;color:#fff;text-align:center;padding:24px}
+  .banner p.eyebrow{font-size:11px;letter-spacing:4px;margin-bottom:8px}
+  .banner h3{font-size:28px;font-weight:900;margin-bottom:8px}
+  .banner p.sub{font-size:11px;color:rgba(255,255,255,.7);margin-bottom:16px}
+  .banner button{background:#fff;color:#111;border:none;padding:8px 24px;
+                 font-size:11px;font-weight:bold;letter-spacing:2px}
+
+  /* FOOTER */
+  footer{margin-top:1px;padding:0 20px;text-align:center}
+  footer h4{font-size:22px;font-weight:9;text-transform:lowercase}
+  footer>img{width:30%;   display:inline-flex;align-items:center;gap:100px;margin-top:40px ;margin-bottom:30px; }
+  footer .meta{font-size:20px;color:#777;letter-spacing:2px;margin-top:8px}
+  footer .ig{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:#777}
+  footer .copy{font-size:15px;color:#777;margin-top:24px}
+
+  /* BOTTOM NAV */
+  .bottom-nav{position:fixed;bottom:0;left:0;right:0;max-width:480px;margin:0 auto;
+              background:#fff;border-top:1px solid #ddd;display:flex;
+              justify-content:space-around;padding:12px 0}
+  .bottom-nav button{display:flex;flex-direction:column;align-items:center;
+                     background:none;border:none;color:#777;font-size:18px}
+  .bottom-nav button.active{color:#111}
+  .bottom-nav span{font-size:10px;margin-top:4px;letter-spacing:2px}
+
+  /* MODAL */
+
+ .modal{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:50;
+         display:none;justify-content:center;align-items:flex-end}
+  .modal.open{display:flex}
+  .modal-content{background:#fff;width:80%;max-width:500px;max-height:100vh;
+                 overflow-y:auto;position:relative}
+  .close-btn{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.4);
+             border:none;padding:8px;border-radius:0%;font-size:30px;z-index:20; color:white;}
+  .modal img{width:100%;aspect-ratio:4/5;object-fit:cover}
+  .modal-body{padding:20px ; }
+  .modal-body .tag{position:static;display:inline-block;margin-bottom:8px}
+  .modal-body h2{font-size:20px;font-weight:900;letter-spacing:3px}
+  .modal-body .price-big{font-size:22px;font-weight:bold;letter-spacing:2px;margin-top:7px}
+  .modal-body .desc{font-size:14px;color:#666;margin-top:6px;line-height:1.6}
+  .ig-btn{display:flex;align-items:center;justify-content:center;gap:5px;width:100%;
+         		background: linear-gradient(to right, #4F008C 0%, #E06900 100%);color:#fff;border:none;padding:14px;font-size:15px;
+          font-weight:bold;letter-spacing:2px;margin-top:6px}
+  .close-cta{width:100%;background:#fff;color:#111;border:3px solid #111;padding:14px;
+             font-size:15px;font-weight:bold;letter-spacing:2px;margin-top:8px}
+  .hint{font-size:10px;color:#777;text-align:center;margin-top:16px;letter-spacing:2px}
+
+.ig-btn2{display:flex;align-items:center;justify-content:center;gap:5px;width:100%;
+        	background: linear-gradient(to right, skyblue 0%, lightgreen 100%) ;color:#fff;border:none;padding:14px;font-size:15px;
+          font-weight:bold;letter-spacing:2px;margin-top:6px}
+
+
+
+
+ .cats{display:flex;gap:8px;; padding:6px 18px ;overflow-x:auto;}
+  .cats a{display:flex;padding: 8px 10px;font-size:13px;font-weight:900; 
+               letter-spacing:4px;background:rgba(0,0,0,.4);color:white}
+  .cats a.active{background:black;color:#fff;border-color:black}
+
+
+
+</style>
+
+
+
+
+
+ 
+<!-- HERO -->
+<section class="hero"> 
+
+
+
+
+<img id="mySlide fade" src="rasm/tom.jpeg" >
+
+
+
+
+
+
+
+
+
+<script>
+
+    
+
+
+       const images = [" https://cdn.phototourl.com/free/2026-05-26-955b95c1-737b-41fd-ab6e-8ef3103da2c4.jpg ",
+  "https://cdn.phototourl.com/pro/2026-05-26-5ffd0461-dfa5-4af5-bfa2-c1358897978e.png",
+  "https://cdn.phototourl.com/pro/2026-05-27-94472995-f895-4c18-a5be-cb5148d3a006.png",
+  "https://cdn.phototourl.com/pro/2026-05-26-fd01e2ed-d953-456b-ac67-24e411c72665.png"];
+  
+  // Your image list
+  let index = 0;
+
+  function changeImage() {
+    index = (index + 1) % images.length; // Loop back to start after last image
+    document.getElementById("mySlide fade").src = images[index];
+  }
+
+  // Change image every 3 seconds (3000 milliseconds)
+  setInterval(changeImage, 4000); 
+ 
+        
+        </script>
+        
+
+        
+        
+        
+  <header class="nav">
+    
+
+    
+   
+    <div class="brand">
+  
+ 
+    
+     <img src="    
+
+rasm/alle.png
+  "  
+  
+  class="center" />
+  
+            
+      
+  
+
+
+    
+    <sup></sup></div>
+
+    <a href="https://www.instagram.com/alle.store0?igsh=ZGZyNGMydW1tcDZz&utm_source=qr" target="_blank" aria-label="Instagram">◉</a>
+  </header>
+  <div class="caption">NEW MODEL</div>
+</section>
+
+<div class="slider">
+  <span></span><span class=""></span><span></span>
+</div>
+
+  <nav class="cats">
+ 
+
+   <a href="index.html">Home</a> 
+ 
+  <a href="aldo.html">Aldo</a>
+  
+ <a href="bvl.html">Bvlgari</a>
+<a href="car.html">Carolina Herrera</a>
+
+<a href="channel.html">Chennel</a>
+
+<a href="coach.html">Coach</a>
+<a href="jwpei.html">JwPei</a>
+<a href="dg.html">DG</a>
+<a href="dkny.html">DKNY</a>
+<a href="emilyloran.html">Emilyloran</a>
+<a href="giv.html">Gevinchy</a>
+
+<a href="guess.html">Guess</a>
+
+<a href="hermes.html">Hermes</a>
+
+<a href="jacq.html">Jacquemus</a>
+
+<a href="lv.html">LV</a>
+<a href="miu.html">Miu Miu</a>
+
+<a href="polo.html">Polo</a>
+
+<a href="tom.html">tommy hilfiger</a>
+
+<a href="toryburch.html">Tory Burch</a>
+
+<a href="ysl.html">YSL</a>
+
+<a href="polene.html">Polene</a>
+<a href="celine.html">Celine</a>
+ <a href="charls.html">charles and keith</a>
+
+
+  <a href="gucci.html">Gucci</a>
+  <a href="pinko.html">Pinko</a>
+<a href="shose.html">Shose</a>
+<a href="wallet.html">Wallet</a>
+<a href="acc.html">accessories</a>
+
+  </nav>
+
+<div class="sec-title">
+  <h2> tommy hilfiger</h2>
+  
+  
+  
+  
+  
+</div>
+
+
+<!-- GRID -->
+<section class="grid" id="grid"></section>
+
+<!-- FOOTER -->
+<footer>
+
+    <img src="    
+rasm/alle black.png
+  "
+  alt="" />
+  
+  
+      <div class="brand">
+    
+  
+  <p class="meta"> iraq - KURDISTAN</p>
+  <a class="ig" href=https://www.instagram.com/alle.store0?igsh=ZGZyNGMydW1tcDZz&utm_source=qr" target="_blank">
+    <span><span style="font-size:30px;letter-spacing:2px">alle store    </ span>
+  </a>
+  <p class="copy">© 2026 alle. All rights reserved.</p>
+</footer>
+
+
+<!-- MODAL -->
+<div class="modal" id="modal" onclick="closeModal(event)">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <button class="close-btn" onclick="closeModal()">✕</button>
+    <img loading="lazy" id="m-img" src="" alt="" />
+    <div class="modal-body">  
+    <p class="hint"> ALLE STORE</p>
+      <span class="tag" id="m-tag"></span>
+   
+      <h2 id="m-name"></h2>
+ 
+      <p class="price-big" id="m-price"></p>
+      <p class="desc" id="m-desc"></p>
+      <a class="ig-btn"      class="" id="m-ig" href="https://www.instagram.com/alle.store0?igsh=ZGZyNGMydW1tcDZz&utm_source=qr" target="_blank">
+        
+        ORDER ON INSTAGRAM
+     
+        </a>
+        
+ <a class="ig-btn2"      class="" id="m-ig" href="https://api.whatsapp.com/send/?phone=96407734475595&text&type=phone_number&app_absent=0&wame_ctl=1" target="_blank">
+     
+     
+ ORDER ON WHATSAPP
+      </a>
+      
+      
+      <button class="close-cta" onclick="closeModal()">✕</button>
+
+      
+      
+    </div>
+  </div>
+
+<script>
+const INSTAGRAM_URL = "https://www.instagram.com/alle.store0?igsh=ZGZyNGMydW1tcDZz&utm_source=qr";
+
+
+   const products = [
+  
+   
+
+  
+  
+    ];
+  
+
+
+
+
+
+
+ // Render grid
+  const grid = document.getElementById("grid");
+  products.forEach((p, i) => {
+    grid.innerHTML += `
+      <article class="card" onclick="openModal(${i})">
+        <div class="img-wrap">
+          <img loading="lazy" src="${p.img}" alt="${p.name}" />
+          ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
+         
+        </div>
+        <div class="card-info">
+    
+          <h3>${p.name}</h3>
+          <p>${p.price}</p>
+        </div>
+      </article>`;
+  });
+
+  // Modal
+  function openModal(i) {
+    const p = products[i];
+    document.getElementById("m-img").src = p.img;
+    document.getElementById("m-img").alt = p.name;
+    document.getElementById("m-name").textContent = p.name;
+    document.getElementById("m-price").textContent = p.price;
+    document.getElementById("m-desc").textContent = p.desc;
+    const tag = document.getElementById("m-tag");
+    if (p.tag) { tag.textContent = p.tag; tag.style.display = "inline-block"; }
+    else tag.style.display = "none";
+    document.getElementById("m-ig").href = INSTAGRAM_URL;
+    document.getElementById("modal").classList.add("open");
+  }
+  function closeModal(e) {
+    if (e && e.target.closest(".modal-content")) return;
+    document.getElementById("modal").classList.remove("open");
+  }
+</script>
+</body>
+
+
+</html>
+
+
+
+
+
+
+
+
